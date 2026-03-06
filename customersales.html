@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Customer Sales Prediction</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background-color 0.5s ease;
+            background-color: #f4f6f9;
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            width: 350px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border: 1px solid hsl(0, 55%, 87%);
+            font-size: 14px;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #6ba96d;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            font-size: 15px;
+            background-color: #333;
+            color: white;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background-color: #555;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="card">
+    <h2>Sales Prediction</h2>
+
+    <input type="number" id="amount" placeholder="Enter Current Sales Amount">
+    <input type="number" id="rate" placeholder="Enter Growth Rate (%)">
+
+    <button onclick="predict()">Predict Next Month</button>
+
+    <div id="result"></div>
+</div>
+
+<script>
+
+function predict() {
+
+    let amount = parseFloat(document.getElementById("amount").value) || 0;
+    let rate = parseFloat(document.getElementById("rate").value) || 0;
+
+    let prediction = amount + (amount * rate / 100);
+
+    let message = "";
+
+    if (prediction < 5000) {
+        document.body.style.backgroundColor = "#F8D7DA"; // light red
+        message = "🔴 Low Sales Prediction";
+    }
+    else if (prediction <= 15000) {
+        document.body.style.backgroundColor = "#FFF1B6"; // light yellow
+        message = "🟡 Medium Sales Prediction";
+    }
+    else {
+        document.body.style.backgroundColor = "#D8F3DC"; // light green
+        message = "🟢 High Sales Prediction";
+    }
+
+    document.getElementById("result").innerHTML =
+        "Predicted Next Month Sales: ₹" + prediction.toFixed(2) +
+        "<br>" + message;
+}
+
+</script>
+
+</body>
+</html>
