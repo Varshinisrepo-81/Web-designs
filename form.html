@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation</title>
+    <style>
+    body{
+      font-family: Arial;
+      background:#f4f4f4;
+    }
+    
+    form{
+      background:white;
+      width:300px;
+      padding:20px;
+      margin:50px auto;
+      border-radius:10px;
+    }
+    
+    input{
+      width: 100%;
+      padding:8px;
+      margin:10px 0;
+    }
+    button{
+      padding:10px;
+      width:100%;
+      background:brown;
+      color:white;
+      border:none;
+      border-radius:20px;
+      cursor:pointer;
+      transition:0.3s;
+    }
+    
+    .error{
+      color:red;
+      font-size:14px;
+    }
+    </style>
+</head>
+
+<body>
+    
+    <form onsubmit="return validateForm()">
+      <h2 align="center">Register</h2>
+    
+      <input type="text" id="name" placeholder="Enter Name" onkeyup="nameCheck()">
+      <p id="nameError" class="error"></p>
+    
+      <input type="password" id="pass" placeholder="Enter Password">
+      <p id="passError" class="error"></p>
+
+      <label>Register Number</label><br>
+  <input type="text" id="regno" style="width:100%; padding:8px;"><br><br>
+
+         <label>Email</label><br>
+  <input type="text" id="email" style="width:100%; padding:8px;"><br><br>
+
+        <label>Gender</label>
+  <input type="radio" name="gender" value="Male"> Male
+  <input type="radio" name="gender" value="Female"> Female<br><br>
+
+
+     <label>Course</label><br>
+  <select id="course" style="width:100%; padding:8px;">
+    <option value="">Select Course</option>
+    <option>BCA</option>
+    <option>BSc</option>
+    <option>BCom</option>
+    <option>BE</option>
+    <option>Btech</option>
+    <option>BBA</option>
+    <option>BA</option>
+  </select><br><br>
+
+  
+     <label>Dept</label><br>
+  <select id="dept" style="width:100%; padding:8px;">
+    <option value="">Select Department</option>
+    <option>Computer Science</option>
+    <option>Mathematics</option>
+    <option>Commerce</option>
+    <option>English</option>
+    <option>Arts</option>
+    <option>viscom</option>
+    <option>nursing</option>
+  </select><br><br>
+
+      <button id="btn"
+        onmouseover="hoverBtn()"
+        onmouseout="outBtn()"
+        onclick="clickBtn()">
+        Submit
+      </button>
+    </form>
+    <script>
+    /* hover function */
+    function hoverBtn(){
+      btn.style.backgroundColor = "green";
+    }
+    
+    /* mouse out */
+    function outBtn(){
+      btn.style.backgroundColor = "brown";
+    }
+    
+    /* mouse click popup */
+    function clickBtn(){
+      alert("Submit button clicked!");
+    }
+    
+    /* keyup validation */
+    function nameCheck(){
+      let name = document.getElementById("name").value;
+      if(name.length < 3){
+        document.getElementById("nameError").innerText = "Name must be at least 3 characters";
+      } else {
+        document.getElementById("nameError").innerText = "";
+      }
+    }
+    function validateForm(){
+      let name = document.getElementById("name").value;
+      let pass = document.getElementById("pass").value;
+       let regno = document.getElementById("regno").value;
+        let email = document.getElementById("email").value;
+        let course = document.getElementById("course").value;
+
+    
+      if(name == ""){
+        alert("Name is required!");
+        return false;
+      }
+    
+      if(pass.length < 8){
+        document.getElementById("passError").innerText = "Password must be 8 characters";
+        return false;
+      }
+     if(regno === ""){
+    alert("Enter register number");
+    return false;
+  }
+
+  if(email === ""){
+    alert("Enter email");
+    return false;
+  }
+
+  if(course === ""){
+    alert("Select a course");
+    return false;
+  }
+      alert("Student information submitted successfully!");
+  return true;
+    }
+    </script>
+    
+</body>
+</html>
